@@ -11,7 +11,7 @@ R_S_B_static = np.array([[1 , 0 , 0] , [0 , 1 , 0] , [0 , 0 , 1]])
 R_UA_S_static = np.array([[0, 0, -1] , [0 , 1 , 0] , [1 , 0 , 0]])
 R_LA_UA_static = np.array([[1, 0, 0] , [0, 1, 0] , [0, 0, 1]])
 R_WR_LA_static = np.array([[0 , -1, 0] , [1 , 0 , 0] , [0 , 0 , 1]])
-R_G_WR_static = np.array([[0 , 1 , 0], [-1 , 0, 0], [0 , 0 , 1]])
+R_G_WR_static = np.array([[0, 0, -1] , [0 , 1 , 0] , [1 , 0 , 0]])
 R_GC_G_static = np.array([ [1, 0 ,0], [0 , 1, 0] , [ 0 , 0, 1]])
 R_J_G_static = np.array([[-1 , 0 , 0] , [ 0 , 0 , -1] , [0 , -1 , 0]])
 
@@ -122,10 +122,13 @@ def fwd_kinematics(thetas):
         #First multiplication of the vector is with the rotation in the current frame of reference(child), then express the position in the parent frame.
         T_link_i = static_transforms[i+1] @ T_joint_i #i+1 bcs the first static transform is the world-base transform, which does not correspond to any joint
         
-        T_link_i_analytical = static_transforms[i+1] @ R_z #to see them analytically
-        print("\n")
-        pprint(T_link_i_analytical)
-        print("\n")
+        #print(analytical matrices)
+        if(i+1 != 6):
+            T_link_i_analytical = static_transforms[i+1] @ R_z #to see them analytically
+            print("\n")
+            pprint(T_link_i_analytical)
+            print("\n")
+
         T_links.append(T_link_i)
 
     T_G_W = np.identity(4)
