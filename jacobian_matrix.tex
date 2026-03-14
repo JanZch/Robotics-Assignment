@@ -7,93 +7,33 @@
 % Jacobian J = ∂x/∂q (6×5 matrix)
 % Individual matrix elements:
 
-% J_{x\theta_1}
-J_{x\theta_1} = \left(0.11257 \sin{\left(\theta_{2} \right)} + 0.0052 \sin{\left(\theta_{2} + \theta_{3} \right)} - 0.028 \cos{\left(\theta_{2} \right)} - 0.1349 \cos{\left(\theta_{2} + \theta_{3} \right)} - 0.0601 \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 0.0306\right) \cos{\left(\theta_{1} \right)}
-
-% J_{x\theta_2}
-J_{x\theta_2} = \left(0.028 \sin{\left(\theta_{2} \right)} + 0.1349 \sin{\left(\theta_{2} + \theta_{3} \right)} + 0.0601 \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} + 0.11257 \cos{\left(\theta_{2} \right)} + 0.0052 \cos{\left(\theta_{2} + \theta_{3} \right)}\right) \sin{\left(\theta_{1} \right)}
-
-% J_{x\theta_3}
-J_{x\theta_3} = \left(0.1349 \sin{\left(\theta_{2} + \theta_{3} \right)} + 0.0601 \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} + 0.0052 \cos{\left(\theta_{2} + \theta_{3} \right)}\right) \sin{\left(\theta_{1} \right)}
-
-% J_{x\theta_4}
-J_{x\theta_4} = 0.0601 \sin{\left(\theta_{1} \right)} \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}
-
-% J_{x\theta_5}
-J_{x\theta_5} = 0
-
-% J_{y\theta_1}
-J_{y\theta_1} = \left(0.11257 \sin{\left(\theta_{2} \right)} + 0.0052 \sin{\left(\theta_{2} + \theta_{3} \right)} - 0.028 \cos{\left(\theta_{2} \right)} - 0.1349 \cos{\left(\theta_{2} + \theta_{3} \right)} - 0.0601 \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 0.0306\right) \sin{\left(\theta_{1} \right)}
-
-% J_{y\theta_2}
-J_{y\theta_2} = - \left(0.028 \sin{\left(\theta_{2} \right)} + 0.1349 \sin{\left(\theta_{2} + \theta_{3} \right)} + 0.0601 \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} + 0.11257 \cos{\left(\theta_{2} \right)} + 0.0052 \cos{\left(\theta_{2} + \theta_{3} \right)}\right) \cos{\left(\theta_{1} \right)}
-
-% J_{y\theta_3}
-J_{y\theta_3} = - \left(0.1349 \sin{\left(\theta_{2} + \theta_{3} \right)} + 0.0601 \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} + 0.0052 \cos{\left(\theta_{2} + \theta_{3} \right)}\right) \cos{\left(\theta_{1} \right)}
-
-% J_{y\theta_4}
-J_{y\theta_4} = - 0.0601 \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} \cos{\left(\theta_{1} \right)}
-
-% J_{y\theta_5}
-J_{y\theta_5} = 0
-
-% J_{z\theta_1}
-J_{z\theta_1} = 0
-
-% J_{z\theta_2}
-J_{z\theta_2} = - 0.11257 \sin{\left(\theta_{2} \right)} - 0.0052 \sin{\left(\theta_{2} + \theta_{3} \right)} + 0.028 \cos{\left(\theta_{2} \right)} + 0.1349 \cos{\left(\theta_{2} + \theta_{3} \right)} + 0.0601 \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}
-
-% J_{z\theta_3}
-J_{z\theta_3} = - 0.0052 \sin{\left(\theta_{2} + \theta_{3} \right)} + 0.1349 \cos{\left(\theta_{2} + \theta_{3} \right)} + 0.0601 \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}
-
-% J_{z\theta_4}
-J_{z\theta_4} = 0.0601 \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}
-
-% J_{z\theta_5}
-J_{z\theta_5} = 0
-
-% J_{roll\theta_1}
-J_{roll\theta_1} = \frac{\sin{\left(\theta_{1} \right)} \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}}{\sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 1}
-
-% J_{roll\theta_2}
-J_{roll\theta_2} = \frac{\cos{\left(\theta_{1} \right)}}{\sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 1}
-
-% J_{roll\theta_3}
-J_{roll\theta_3} = \frac{\cos{\left(\theta_{1} \right)}}{\sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 1}
-
-% J_{roll\theta_4}
-J_{roll\theta_4} = \frac{\cos{\left(\theta_{1} \right)}}{\sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 1}
-
-% J_{roll\theta_5}
-J_{roll\theta_5} = 0
-
-% J_{pitch\theta_1}
-J_{pitch\theta_1} = \frac{\cos{\left(\theta_{1} \right)} \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}}{\sqrt{- \sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} + 1}}
-
-% J_{pitch\theta_2}
-J_{pitch\theta_2} = - \frac{\sin{\left(\theta_{1} \right)} \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}}{\sqrt{- \sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} + 1}}
-
-% J_{pitch\theta_3}
-J_{pitch\theta_3} = - \frac{\sin{\left(\theta_{1} \right)} \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}}{\sqrt{- \sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} + 1}}
-
-% J_{pitch\theta_4}
-J_{pitch\theta_4} = - \frac{\sin{\left(\theta_{1} \right)} \sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}}{\sqrt{- \sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} + 1}}
-
-% J_{pitch\theta_5}
-J_{pitch\theta_5} = 0
-
-% J_{yaw\theta_1}
-J_{yaw\theta_1} = \frac{\sin{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}}{\sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 1}
-
-% J_{yaw\theta_2}
-J_{yaw\theta_2} = \frac{\sin{\left(\theta_{1} \right)} \cos{\left(\theta_{1} \right)} \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}}{\sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 1}
-
-% J_{yaw\theta_3}
-J_{yaw\theta_3} = \frac{\sin{\left(\theta_{1} \right)} \cos{\left(\theta_{1} \right)} \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}}{\sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 1}
-
-% J_{yaw\theta_4}
-J_{yaw\theta_4} = \frac{\sin{\left(\theta_{1} \right)} \cos{\left(\theta_{1} \right)} \cos{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)}}{\sin^{2}{\left(\theta_{1} \right)} \cos^{2}{\left(\theta_{2} + \theta_{3} + \theta_{4} \right)} - 1}
-
-% J_{yaw\theta_5}
-J_{yaw\theta_5} = -1
-
+J_{x\theta_1} &= c_{1} \left(- 0.028 c_{2} - 0.1349 c_{23} - 0.0601 c_{234} + 0.11257 s_{2} + 0.0052 s_{23} - 0.0306\right)\\ 
+J_{x\theta_2} &= s_{1} \cdot \left(0.11257 c_{2} + 0.0052 c_{23} + 0.028 s_{2} + 0.1349 s_{23} + 0.0601 s_{234}\right)\\ 
+J_{x\theta_3} &= s_{1} \cdot \left(0.0052 c_{23} + 0.1349 s_{23} + 0.0601 s_{234}\right)\\ 
+J_{x\theta_4} &= 0.0601 s_{1} s_{234}\\ 
+J_{x\theta_5} &= 0\\ 
+J_{y\theta_1} &= s_{1} \left(- 0.028 c_{2} - 0.1349 c_{23} - 0.0601 c_{234} + 0.11257 s_{2} + 0.0052 s_{23} - 0.0306\right)\\ 
+J_{y\theta_2} &= - c_{1} \cdot \left(0.11257 c_{2} + 0.0052 c_{23} + 0.028 s_{2} + 0.1349 s_{23} + 0.0601 s_{234}\right)\\ 
+J_{y\theta_3} &= - c_{1} \cdot \left(0.0052 c_{23} + 0.1349 s_{23} + 0.0601 s_{234}\right)\\ 
+J_{y\theta_4} &= - 0.0601 c_{1} s_{234}\\ 
+J_{y\theta_5} &= 0\\ 
+J_{z\theta_1} &= 0\\ 
+J_{z\theta_2} &= 0.028 c_{2} + 0.1349 c_{23} + 0.0601 c_{234} - 0.11257 s_{2} - 0.0052 s_{23}\\ 
+J_{z\theta_3} &= 0.1349 c_{23} + 0.0601 c_{234} - 0.0052 s_{23}\\ 
+J_{z\theta_4} &= 0.0601 c_{234}\\ 
+J_{z\theta_5} &= 0\\ 
+J_{roll\theta_1} &= \frac{c_{234} s_{1} s_{234}}{c_{234}^{2} s_{1}^{2} - 1}\\ 
+J_{roll\theta_2} &= \frac{c_{1}}{c_{234}^{2} s_{1}^{2} - 1}\\ 
+J_{roll\theta_3} &= \frac{c_{1}}{c_{234}^{2} s_{1}^{2} - 1}\\ 
+J_{roll\theta_4} &= \frac{c_{1}}{c_{234}^{2} s_{1}^{2} - 1}\\ 
+J_{roll\theta_5} &= 0\\ 
+J_{pitch\theta_1} &= \frac{c_{1} c_{234}}{\sqrt{- c_{234}^{2} s_{1}^{2} + 1}}\\ 
+J_{pitch\theta_2} &= - \frac{s_{1} s_{234}}{\sqrt{- c_{234}^{2} s_{1}^{2} + 1}}\\ 
+J_{pitch\theta_3} &= - \frac{s_{1} s_{234}}{\sqrt{- c_{234}^{2} s_{1}^{2} + 1}}\\ 
+J_{pitch\theta_4} &= - \frac{s_{1} s_{234}}{\sqrt{- c_{234}^{2} s_{1}^{2} + 1}}\\ 
+J_{pitch\theta_5} &= 0\\ 
+J_{yaw\theta_1} &= \frac{s_{234}}{c_{234}^{2} s_{1}^{2} - 1}\\ 
+J_{yaw\theta_2} &= \frac{c_{1} c_{234} s_{1}}{c_{234}^{2} s_{1}^{2} - 1}\\ 
+J_{yaw\theta_3} &= \frac{c_{1} c_{234} s_{1}}{c_{234}^{2} s_{1}^{2} - 1}\\ 
+J_{yaw\theta_4} &= \frac{c_{1} c_{234} s_{1}}{c_{234}^{2} s_{1}^{2} - 1}\\ 
+J_{yaw\theta_5} &= -1\\ 

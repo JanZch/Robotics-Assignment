@@ -43,6 +43,50 @@ static_transforms = [T_B_W_static, T_S_B_static, T_UA_S_static, T_LA_UA_static, 
 theta1, theta2, theta3, theta4, theta5 = symbols('theta1 theta2 theta3 theta4 theta5')
 thetas = [theta1, theta2, theta3, theta4, theta5]
 
+from sympy import Add, Symbol
+
+def angle_index(expr, thetas):
+    """
+    Convert angle expression like:
+        theta2 + theta3 + theta4
+    into string:
+        '234'
+    """
+    expr = simplify(expr)
+
+    if expr in thetas:
+        return str(thetas.index(expr) + 1)
+
+    if isinstance(expr, Add):
+        indices = []
+        for term in expr.args:
+            if term in thetas:
+                indices.append(str(thetas.index(term) + 1))
+        return "".join(indices)
+
+    raise ValueError(f"Unsupported trig argument: {expr}")
+
+
+def compress_trig(expr, thetas):
+    """
+    Replace sin/cos(angle sums) with compact symbols.
+    """
+    replacements = {}
+
+    for trig in expr.atoms(sin, cos):
+
+        arg = trig.args[0]
+        idx = angle_index(arg, thetas)
+
+        if trig.func == sin:
+            new_sym = Symbol(f"s_{idx}")
+        else:
+            new_sym = Symbol(f"c_{idx}")
+
+        replacements[trig] = new_sym
+
+    return expr.xreplace(replacements)
+
 def symbolic_fwd_kinematics(thetas):
     """
     Compute symbolic forward kinematics.
@@ -171,6 +215,11 @@ print("Jacobian Matrix dimensions: 6 rows (pose components) × 5 columns (joint 
 
 print("\nSimplifying Jacobian matrix...")
 jacobian_simplified = simplify(jacobian)
+print("\nCompressing trigonometric expressions...")
+
+jacobian_compact = jacobian_simplified.applyfunc(
+    lambda e: compress_trig(e, thetas)
+)
 
 # Evaluate at zero position
 print("\nEvaluating Jacobian at zero joint angles...")
@@ -184,7 +233,7 @@ print("SIMPLIFIED SYMBOLIC JACOBIAN MATRIX")
 print("="*80)
 print("\nRows: [x, y, z, roll, pitch, yaw]")
 print("Columns: [θ1, θ2, θ3, θ4, θ5]\n")
-pprint(jacobian_simplified)
+pprint(jacobian_compact)
 
 # Print column-wise with labels for clarity
 print("\n" + "="*80)
@@ -207,7 +256,7 @@ print("="*80)
 print("LaTeX OUTPUT - Individual Jacobian Elements")
 print("="*80)
 
-jacobian_cells = generate_individual_latex_jacobians(jacobian_simplified)
+jacobian_cells = generate_individual_latex_jacobians(jacobian_compact)
 
 # Print to console
 print("\nIndividual LaTeX Expressions:\n")
@@ -226,8 +275,7 @@ with open('jacobian_matrix.tex', 'w') as f:
     f.write("% Individual matrix elements:\n\n")
     
     for key, latex_expr in jacobian_cells.items():
-        f.write(f"% {key}\n")
-        f.write(f"{key} = {latex_expr}\n\n")
+        f.write(f"{key} &= {latex_expr}\\\ \n")
 
 print("\n" + "-"*80)
 print("LaTeX output saved to: jacobian_matrix.tex")
