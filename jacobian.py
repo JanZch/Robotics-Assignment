@@ -125,9 +125,9 @@ def symbolic_fwd_kinematics(thetas):
     R = T_total[0:3, 0:3]
 
     # Compute Euler angles (convention: roll applied first, then pitch, then yaw)
-    roll = atan2(R[1, 2], R[2, 2])
-    pitch = -asin(R[0, 2])
-    yaw = atan2(R[0, 1], R[0, 0])
+    roll = atan2(R[2, 1], R[2, 2])
+    pitch = asin(-R[2, 0])
+    yaw = atan2(R[1, 0], R[0, 0])
 
     # Simplify the pose components
     pose = [simplify(x), simplify(y), simplify(z), simplify(roll), simplify(pitch), simplify(yaw)]
