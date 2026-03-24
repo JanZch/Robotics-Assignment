@@ -17,8 +17,13 @@ def compute_jacobian(theta1, theta2, theta3, theta4, theta5):
                     , 0.0601*np.cos(theta2 + theta3 + theta4)
                     , 0]])
 
-# Pseudonvert
 
-# Apply velocity vector to get joint velocities
+pose = [0,0,0,0,0]
+jacobian = compute_jacobian(*pose)
+inverse_jacobian = np.linalg.pinv(jacobian)
+velocity = np.array([1, 0, 0])
+joint_velocity = inverse_jacobian @ velocity
+
+
 
 
