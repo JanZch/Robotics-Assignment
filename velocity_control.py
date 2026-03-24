@@ -124,9 +124,9 @@ def evaluate_jacobian_numeric(jacobian_symbolic, joint_angles, angle_values):
 # Example usage: get symbolic expressions
 print("Computing symbolic pose expressions...")
 pose_expressions = symbolic_fwd_kinematics(thetas)
-print("\nSymbolic pose expressions (6 components):")
+print("\nSymbolic pose expressions (3 components):")
 for i, expr in enumerate(pose_expressions):
-    labels = ['x', 'y', 'z', 'roll', 'pitch', 'yaw']
+    labels = ['x', 'y', 'z']
     print(f"{labels[i]}")
 
 print("\nComputing Jacobian matrix (this may take a moment)...")
@@ -138,4 +138,36 @@ jacobian_simplified = simplify(jacobian)
 print("\nCompressing trigonometric expressions...")
 
 
+print(jacobian_simplified)
+pprint(jacobian_simplified)
+from sympy import lambdify
 
+def get_jacobian_function(thetas, pose_expressions):
+    """
+    Generates a high-speed numerical function for the 3x5 Jacobian.
+    """
+    # 1. Compute the symbolic Jacobian (Partial derivatives)
+    # J_ij = d(Pose_i) / d(Theta_j)
+    vec_pose = Matrix(pose_expressions)
+    vec_thetas = Matrix(thetas)
+    symbolic_jacobian = vec_pose.jacobian(vec_thetas)
+    
+    # 2. Convert symbolic matrix to a fast NumPy function
+    # 'numpy' argument ensures sin/cos use np.sin/np.cos
+    num_jacobian_func = lambdify((thetas), symbolic_jacobian, 'numpy')
+    
+    return num_jacobian_func
+
+# --- Execution ---
+
+# Generate the function
+print("Generating numerical Jacobian function...")
+jac_func = get_jacobian_function(thetas, pose_expressions)
+print(jac_func)
+
+# Example: Evaluate at specific joint angles (in radians)
+example_angles = [0.1, 0.2, -0.1, 0.5, 0.0]
+numerical_j = jac_func(*example_angles)
+
+print("\nNumerical Jacobian at", example_angles, ":")
+print(numerical_j)
