@@ -19,11 +19,13 @@ def compute_jacobian(theta1, theta2, theta3, theta4, theta5):
 
 
 pose = [0,0,0,0,0]
-jacobian = compute_jacobian(*pose)
-inverse_jacobian = np.linalg.pinv(jacobian)
-velocity = np.array([1, 0, 0])
-joint_velocity = inverse_jacobian @ velocity
+velocity = np.array([0.1, 0, 0])
+
+def velocity_trajectory(pose, velocity):
+    jacobian = compute_jacobian(*pose)
+    inverse_jacobian = np.linalg.pinv(jacobian)
+    return inverse_jacobian @ velocity
 
 
-
+print(velocity_trajectory(pose,velocity))
 
