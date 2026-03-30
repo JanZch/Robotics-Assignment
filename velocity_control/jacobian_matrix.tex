@@ -1,0 +1,39 @@
+% Simplified Symbolic Jacobian Matrix for 5-DOF RRRRR Robotic Arm
+% Generated from symbolic kinematics computation
+% 
+% Pose vector: x = [x, y, z, roll, pitch, yaw]
+% Joint angles: q = [θ1, θ2, θ3, θ4, θ5]
+% 
+% Jacobian J = ∂x/∂q (6×5 matrix)
+% Individual matrix elements:
+
+J_{x\theta_1} &= c_{1} \left(- 0.028 c_{2} - 0.1349 c_{23} - 0.0601 c_{234} + 0.11257 s_{2} + 0.0052 s_{23} - 0.0306\right)\\ 
+J_{x\theta_2} &= s_{1} \cdot \left(0.11257 c_{2} + 0.0052 c_{23} + 0.028 s_{2} + 0.1349 s_{23} + 0.0601 s_{234}\right)\\ 
+J_{x\theta_3} &= s_{1} \cdot \left(0.0052 c_{23} + 0.1349 s_{23} + 0.0601 s_{234}\right)\\ 
+J_{x\theta_4} &= 0.0601 s_{1} s_{234}\\ 
+J_{x\theta_5} &= 0\\ 
+J_{y\theta_1} &= s_{1} \left(- 0.028 c_{2} - 0.1349 c_{23} - 0.0601 c_{234} + 0.11257 s_{2} + 0.0052 s_{23} - 0.0306\right)\\ 
+J_{y\theta_2} &= - c_{1} \cdot \left(0.11257 c_{2} + 0.0052 c_{23} + 0.028 s_{2} + 0.1349 s_{23} + 0.0601 s_{234}\right)\\ 
+J_{y\theta_3} &= - c_{1} \cdot \left(0.0052 c_{23} + 0.1349 s_{23} + 0.0601 s_{234}\right)\\ 
+J_{y\theta_4} &= - 0.0601 c_{1} s_{234}\\ 
+J_{y\theta_5} &= 0\\ 
+J_{z\theta_1} &= 0\\ 
+J_{z\theta_2} &= 0.028 c_{2} + 0.1349 c_{23} + 0.0601 c_{234} - 0.11257 s_{2} - 0.0052 s_{23}\\ 
+J_{z\theta_3} &= 0.1349 c_{23} + 0.0601 c_{234} - 0.0052 s_{23}\\ 
+J_{z\theta_4} &= 0.0601 c_{234}\\ 
+J_{z\theta_5} &= 0\\ 
+J_{roll\theta_1} &= 0\\ 
+J_{roll\theta_2} &= - \frac{c_{5}}{c_{234}^{2} s_{5}^{2} - 1}\\ 
+J_{roll\theta_3} &= - \frac{c_{5}}{c_{234}^{2} s_{5}^{2} - 1}\\ 
+J_{roll\theta_4} &= - \frac{c_{5}}{c_{234}^{2} s_{5}^{2} - 1}\\ 
+J_{roll\theta_5} &= - \frac{c_{234} s_{234} s_{5}}{c_{234}^{2} s_{5}^{2} - 1}\\ 
+J_{pitch\theta_1} &= 0\\ 
+J_{pitch\theta_2} &= - \frac{s_{234} s_{5}}{\sqrt{- c_{234}^{2} s_{5}^{2} + 1}}\\ 
+J_{pitch\theta_3} &= - \frac{s_{234} s_{5}}{\sqrt{- c_{234}^{2} s_{5}^{2} + 1}}\\ 
+J_{pitch\theta_4} &= - \frac{s_{234} s_{5}}{\sqrt{- c_{234}^{2} s_{5}^{2} + 1}}\\ 
+J_{pitch\theta_5} &= \frac{c_{234} c_{5}}{\sqrt{- c_{234}^{2} s_{5}^{2} + 1}}\\ 
+J_{yaw\theta_1} &= 1\\ 
+J_{yaw\theta_2} &= - \frac{c_{234} c_{5} s_{5}}{c_{234}^{2} s_{5}^{2} - 1}\\ 
+J_{yaw\theta_3} &= - \frac{c_{234} c_{5} s_{5}}{c_{234}^{2} s_{5}^{2} - 1}\\ 
+J_{yaw\theta_4} &= - \frac{c_{234} c_{5} s_{5}}{c_{234}^{2} s_{5}^{2} - 1}\\ 
+J_{yaw\theta_5} &= - \frac{s_{234}}{c_{234}^{2} s_{5}^{2} - 1}\\ 
