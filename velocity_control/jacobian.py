@@ -228,6 +228,61 @@ jacobian_zero = evaluate_jacobian_numeric(jacobian_simplified, thetas, zero_angl
 print("\nJacobian at zero position (6×5):")
 print(jacobian_zero)
 
+print("\n" + "="*80)
+print("SIMPLIFIED SYMBOLIC JACOBIAN MATRIX")
+print("="*80)
+print("\nRows: [x, y, z, roll, pitch, yaw]")
+print("Columns: [θ1, θ2, θ3, θ4, θ5]\n")
+pprint(jacobian_compact)
+
+# Print column-wise with labels for clarity
+print("\n" + "="*80)
+print("JACOBIAN COMPONENTS (Individual Elements)")
+print("="*80)
+labels_pose = ['x', 'y', 'z', 'roll', 'pitch', 'yaw']
+labels_theta = ['θ1 (SR)', 'θ2 (SP)', 'θ3 (E)', 'θ4 (WP)', 'θ5 (WR)']
+
+for i in range(6):
+    print(f"\nRow {i} - {labels_pose[i]} derivatives:")
+    for j in range(5):
+        element = jacobian_simplified[i, j]
+        print(f"  ∂{labels_pose[i]}/∂{labels_theta[j]} = {element}")
+
+# ============================================================================
+# LATEX OUTPUT - Ready to paste into LaTeX document
+# ============================================================================
+print("\n\n")
+print("="*80)
+print("LaTeX OUTPUT - Individual Jacobian Elements")
+print("="*80)
+
+jacobian_cells = generate_individual_latex_jacobians(jacobian_compact)
+
+# Print to console
+print("\nIndividual LaTeX Expressions:\n")
+for key, latex_expr in jacobian_cells.items():
+    print(f"{key} = {latex_expr}\n")
+
+# Save individual expressions to file
+with open('jacobian_matrix.tex', 'w') as f:
+    f.write("% Simplified Symbolic Jacobian Matrix for 5-DOF RRRRR Robotic Arm\n")
+    f.write("% Generated from symbolic kinematics computation\n")
+    f.write("% \n")
+    f.write("% Pose vector: x = [x, y, z, roll, pitch, yaw]\n")
+    f.write("% Joint angles: q = [θ1, θ2, θ3, θ4, θ5]\n")
+    f.write("% \n")
+    f.write("% Jacobian J = ∂x/∂q (6×5 matrix)\n")
+    f.write("% Individual matrix elements:\n\n")
+    
+    for key, latex_expr in jacobian_cells.items():
+        f.write(f"{key} &= {latex_expr}\\\ \n")
+
+print("\n" + "-"*80)
+print("LaTeX output saved to: jacobian_matrix.tex")
+print("-"*80)
+
+# print("Numerical pose at zero position:", [float(p) for p in numerical_pose])
+
 np.set_printoptions(suppress=True, precision=4)
 print("\nEvaluating Jacobian at position 1...")
 angles_1 = [-0.920, 0.645, -0.876, 0.232, 1.571]
