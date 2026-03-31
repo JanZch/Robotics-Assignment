@@ -54,8 +54,7 @@ def solve_ik_position(
         tool_pitch ~= q2 + q3 + q4
 
     desired_tool_pitch is in radians.
-    More negative / more positive depends on your sign convention in sim,
-    so you may need to tune it.
+    More negative / more positive depends on your sign convention in sim
     """
     def objective(qv):
         pos_err = fk_position(qv) - target_xyz
@@ -180,9 +179,9 @@ class StackCubesFromSource(Node):
         # ---------------- HOME / NOMINAL POSE ----------------
         self._HOME_Q = q(
             0.0,
-            1.3,
-            0.0,
-            0.0,
+            -0.161,
+            0.026,
+            -0.0297,
             0.0
         )
         self._HOME_XYZ = fk_position(self._HOME_Q)
