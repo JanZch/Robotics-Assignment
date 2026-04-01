@@ -160,8 +160,8 @@ class StackCubesFromSource(Node):
         ]
 
         # ---------------- GRIPPER SETTINGS ----------------
-        self._GRIPPER_OPEN = 0.5
-        self._GRIPPER_CLOSED = -0.3
+        self._GRIPPER_OPEN = 0.6    
+        self._GRIPPER_CLOSED = -0.35
 
         # ---------------- TOOL PITCH PREFERENCE ----------------
         # Approximate tool pitch = q2 + q3 + q4
@@ -171,8 +171,8 @@ class StackCubesFromSource(Node):
         #
         # If the gripper angles the wrong way, flip the sign or adjust magnitude.
         # Good starting range is roughly -1.6 to -0.8 rad.
-        self._DESIRED_TOOL_PITCH_PICK_PLACE = -1.35
-        self._DESIRED_TOOL_PITCH_TRAVEL = -1.10
+        self._DESIRED_TOOL_PITCH_PICK_PLACE = -1.55
+        self._DESIRED_TOOL_PITCH_TRAVEL = -1.20
 
         self._TOOL_PITCH_WEIGHT_PICK_PLACE = 8.0
         self._TOOL_PITCH_WEIGHT_TRAVEL = 2.0
@@ -180,9 +180,9 @@ class StackCubesFromSource(Node):
         # ---------------- HOME / NOMINAL POSE ----------------
         self._HOME_Q = q(
             0.0,
-            1.3,
-            0.0,
-            0.0,
+            -0.161,
+            0.026,
+            -0.0297,
             0.0
         )
         self._HOME_XYZ = fk_position(self._HOME_Q)
@@ -200,27 +200,26 @@ class StackCubesFromSource(Node):
         # USER INPUT
         # =====================================================
 
-        # Same source location for every cube
-        self._SOURCE_PICK = p(-0.15, 0.25, 0.01)
-        self._SOURCE_ABOVE = p(-0.15, 0.25, 0.10)
+        self._SOURCE_PICK = p(-0.10, 0.14, 0.032)
+        self._SOURCE_ABOVE = p(-0.10, 0.15, 0.10)
 
         # Disabled transit for now
         self._TRANSIT = None
 
         # Stack destination XY and base Z
-        self._STACK_XY = np.array([0.15, 0.25], dtype=float)
-        self._STACK_BASE_Z = 0.01
+        self._STACK_XY = np.array([0.10, 0.14], dtype=float)
+        self._STACK_BASE_Z = 0.032
 
         # Geometry / planning constants
-        self._CUBE_HEIGHT = 0.03
-        self._APPROACH_CLEARANCE = 0.06
+        self._CUBE_HEIGHT = 0.02
+        self._APPROACH_CLEARANCE = 0.02
 
         # Segment durations
-        self._T_MOVE = 2.5
-        self._T_LOWER = 1.5
-        self._T_GRIP = 1.0
-        self._T_LIFT = 1.5
-        self._T_TRANSIT = 1.6
+        self._T_MOVE = 6.0
+        self._T_LOWER = 2.0
+        self._T_GRIP = 2.5
+        self._T_LIFT = 2.6
+        self._T_TRANSIT = 7.0
 
         # For finite number, set this to cube stack #
         # If None, it runs until user termination
